@@ -1,0 +1,135 @@
+[
+    [
+    {
+        "name": "VortexA 18",
+        "rom": 128,
+        "ram": 4,
+        "screen_size": 4.8,
+        "screen_resolution": "1920x1080",
+        "screen_technology": "OLED",
+        "main_camera": "12MP",
+        "selfie_camera": "64MP",
+        "price": 1104.57,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "PhoneX 20",
+        "rom": 256,
+        "ram": 6,
+        "screen_size": 5.4,
+        "screen_resolution": "2560x1440",
+        "screen_technology": "AMOLED",
+        "main_camera": "48MP",
+        "selfie_camera": "12MP",
+        "price": 899.99,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "NebulaOne 19",
+        "rom": 64,
+        "ram": 12,
+        "screen_size": 6.5,
+        "screen_resolution": "3840x2160",
+        "screen_technology": "LCD",
+        "main_camera": "108MP",
+        "selfie_camera": "48MP",
+        "price": 1300.00,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "MysticZ 7",
+        "rom": 512,
+        "ram": 8,
+        "screen_size": 6.1,
+        "screen_resolution": "1920x1080",
+        "screen_technology": "LED",
+        "main_camera": "64MP",
+        "selfie_camera": "108MP",
+        "price": 1200.45,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "NovaY 4",
+        "rom": 128,
+        "ram": 16,
+        "screen_size": 6.7,
+        "screen_resolution": "2560x1440",
+        "screen_technology": "AMOLED",
+        "main_camera": "12MP",
+        "selfie_camera": "48MP",
+        "price": 950.30,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "OrbitM 15",
+        "rom": 256,
+        "ram": 4,
+        "screen_size": 5.9,
+        "screen_resolution": "3840x2160",
+        "screen_technology": "OLED",
+        "main_camera": "48MP",
+        "selfie_camera": "64MP",
+        "price": 1100.00,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "GalaxyPro 3",
+        "rom": 64,
+        "ram": 6,
+        "screen_size": 4.6,
+        "screen_resolution": "1920x1080",
+        "screen_technology": "LED",
+        "main_camera": "108MP",
+        "selfie_camera": "12MP",
+        "price": 700.50,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "PixelMaster 12",
+        "rom": 512,
+        "ram": 12,
+        "screen_size": 5.2,
+        "screen_resolution": "2560x1440",
+        "screen_technology": "AMOLED",
+        "main_camera": "64MP",
+        "selfie_camera": "108MP",
+        "price": 1450.99,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "VortexA 9",
+        "rom": 128,
+        "ram": 8,
+        "screen_size": 6.3,
+        "screen_resolution": "3840x2160",
+        "screen_technology": "LCD",
+        "main_camera": "48MP",
+        "selfie_camera": "12MP",
+        "price": 850.75,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    },
+    {
+        "name": "PhoneX 6",
+        "rom": 256,
+        "ram": 16,
+        "screen_size": 6.9,
+        "screen_resolution": "1920x1080",
+        "screen_technology": "OLED",
+        "main_camera": "108MP",
+        "selfie_camera": "64MP",
+        "price": 1350.20,
+        "description": "A high-quality mobile phone with excellent features.",
+        "released_in": "2024-01-25 13:31:10"
+    }
+]
+
+]
