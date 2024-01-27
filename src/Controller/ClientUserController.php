@@ -14,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
@@ -115,5 +116,25 @@ class ClientUserController extends AbstractController
                 null,
                 JsonResponse::HTTP_FORBIDDEN
             );
+    }
+    #[Route("/api/users/{id}", name: "update_user", methods: ["PUT"])]
+    #[IsGranted("ROLE_CLIENT", message: "Vous n'avez pas les droits suffisant pour cet actions")]
+    public function updateUser(ClientUser $clientUser, Request $request): JsonResponse
+    {
+        $token = $this->tokenStorage->getToken();
+        /**
+         * @var Client
+         */
+        $client = $token->getUser();
+        $updatedClientUser = $this->serializerInterface->deserialize($request->getContent(), ClientUser::class, "json", [
+            AbstractNormalizer::OBJECT_TO_POPULATE => $clientUser
+        ]);
+        $this->em->persist($updatedClientUser);
+        $this->em->flush();
+        $this->tagAwareCacheInterface->invalidateTags([$client->getName()."users"]);
+        return new JsonResponse(
+            null,
+            JsonResponse::HTTP_NO_CONTENT
+        );
     }
 }
