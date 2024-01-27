@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ClientUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ClientUserRepository::class)]
 class ClientUser implements PasswordAuthenticatedUserInterface
@@ -12,18 +13,23 @@ class ClientUser implements PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["get_client_user"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["get_client_user"])]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["get_client_user"])]
     private ?string $last_name = null;
 
     #[ORM\Column]
+    #[Groups(["get_client_user"])]
     private ?int $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["get_client_user"])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
