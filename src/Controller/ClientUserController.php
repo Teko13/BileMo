@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
@@ -71,7 +72,7 @@ class ClientUserController extends AbstractController
     }
     #[Route("/api/users", name:"add_user", methods: ["POST"])]
     #[IsGranted("ROLE_CLIENT", message: "Vous n'avez pas les droits suffisant pour cet actions")]
-    public function addUser(Request $request): JsonResponse
+    public function addUser(ValidatorInterface $validatorInterface, Request $request): JsonResponse
     {
         $token = $this->tokenStorage->getToken();
         /**
@@ -79,6 +80,12 @@ class ClientUserController extends AbstractController
          */
         $client = $token->getUser();
         $newClientUser = $this->serializerInterface->deserialize($request->getContent(), ClientUser::class, "json");
+        $errors = $validatorInterface->validate($newClientUser);
+        if($errors->count() > 0)
+        {
+            $josnErrors = $this->serializerInterface->serialize($errors, "json");
+            return new JsonResponse($josnErrors, JsonResponse::HTTP_BAD_REQUEST);
+        }
         $newClientUser->setPassword($this->hasher->hashPassword($newClientUser, $newClientUser->getPassword()));
         $newClientUser->setClient($client);
         $this->em->persist($newClientUser);
@@ -119,22 +126,35 @@ class ClientUserController extends AbstractController
     }
     #[Route("/api/users/{id}", name: "update_user", methods: ["PUT"])]
     #[IsGranted("ROLE_CLIENT", message: "Vous n'avez pas les droits suffisant pour cet actions")]
-    public function updateUser(ClientUser $clientUser, Request $request): JsonResponse
+    public function updateUser(ValidatorInterface $validatorInterface, ClientUser $clientUser, Request $request): JsonResponse
     {
         $token = $this->tokenStorage->getToken();
         /**
          * @var Client
          */
         $client = $token->getUser();
-        $updatedClientUser = $this->serializerInterface->deserialize($request->getContent(), ClientUser::class, "json", [
+        if($clientUser->getClient() === $client)
+        {
+            $updatedClientUser = $this->serializerInterface->deserialize($request->getContent(), ClientUser::class, "json", [
             AbstractNormalizer::OBJECT_TO_POPULATE => $clientUser
-        ]);
-        $this->em->persist($updatedClientUser);
-        $this->em->flush();
-        $this->tagAwareCacheInterface->invalidateTags([$client->getName()."users"]);
-        return new JsonResponse(
+            ]);
+            $errors = $validatorInterface->validate($updatedClientUser);
+            if ($errors->count() > 0)
+            {
+                $jsonErrors = $this->serializerInterface->serialize($errors, "json");
+                return new JsonResponse($jsonErrors, JsonResponse::HTTP_BAD_REQUEST);
+            }
+            $this->em->persist($updatedClientUser);
+            $this->em->flush();
+            $this->tagAwareCacheInterface->invalidateTags([$client->getName()."users"]);
+            return new JsonResponse(
             null,
             JsonResponse::HTTP_NO_CONTENT
+            );
+        }
+        return  new JsonResponse(
+            null,
+            JsonResponse::HTTP_FORBIDDEN
         );
     }
 }

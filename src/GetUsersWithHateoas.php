@@ -18,11 +18,15 @@ class GetUsersWithHateoas extends AbstractController
                     "_links" => [
                         "self" => [
                             "method" => "GET",
-                            "url" => $this->generateUrl('get_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
+                            "path" => $this->generateUrl('get_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
+                        ],
+                        "update" => [
+                            "method" => "PUT",
+                            "path" => $this->generateUrl("update_user", ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
                         ],
                         "delete" => [
                             "method" => "DELETE",
-                            "url" => $this->generateUrl('delete_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
+                            "path" => $this->generateUrl('delete_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
                         ]
                     ]
                 ];
@@ -39,11 +43,15 @@ class GetUsersWithHateoas extends AbstractController
             "_links" => [
                 "self" => [
                     "method" => "GET",
-                    "url" => $this->generateUrl('get_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
+                    "path" => $this->generateUrl('get_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
+                ],
+                "update" => [
+                    "method" => "PUT",
+                    "path" => $this->generateUrl("update_user", ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
                 ],
                 "delete" => [
                     "method" => "DELETE",
-                    "url" => $this->generateUrl('delete_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
+                    "path" => $this->generateUrl('delete_user', ["id" => $user->getId()], UrlGeneratorInterface::ABSOLUTE_PATH)
                 ]
             ]
         ];
