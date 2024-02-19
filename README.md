@@ -64,7 +64,7 @@ Key functionalities of the API:
    openssl genpkey -algorithm RSA -out ./config/jwt/private.pem -pkeyopt rsa_keygen_bits:2048
    ```
 
-3. Generate private key: At the project root run
+3. Generate public key: At the project root run
 
    ```
    openssl rsa -in ./config/jwt/private.pem -pubout -out ./config/jwt/public.pem
