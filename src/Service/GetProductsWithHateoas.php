@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Service;
 
 use App\Entity\Product;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

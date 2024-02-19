@@ -54,6 +54,22 @@ Key functionalities of the API:
 
 7. Start server: at the project root folder run local server
 
+## JWT Keys Generation
+
+1. Create "config/jwt/" directory if not exist
+
+2. Generate private key: At the project root run
+
+   ```
+   openssl genpkey -algorithm RSA -out ./config/jwt/private.pem -pkeyopt rsa_keygen_bits:2048
+   ```
+
+3. Generate private key: At the project root run
+
+   ```
+   openssl rsa -in ./config/jwt/private.pem -pubout -out ./config/jwt/public.pem
+   ```
+
 ## Documentation
 
 - /api/doc

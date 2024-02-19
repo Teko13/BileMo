@@ -3,12 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\GetProductsWithHateoas;
+use App\Service\GetProductsWithHateoas;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
@@ -17,7 +16,6 @@ class ProductController extends AbstractController
 {
     public function __construct(private TagAwareCacheInterface $tagAwareCacheInterface, private GetProductsWithHateoas $getProductsWithHateoas, private ProductRepository $productRepository, private SerializerInterface $serializerInterface) {}
     #[Route('/api/products', name: 'get_products', methods: ["GET"])]
-    #[IsGranted("ROLE_CLIENT", message: "Vous n'avez pas les droits suffisant pour cet actions")]
     public function getProducts(): JsonResponse
     {
         $cacheId = "productsId";
@@ -35,7 +33,6 @@ class ProductController extends AbstractController
         );
     }
     #[Route("/api/products/{id}", name: "get_product", methods: ["GET"])]
-    #[IsGranted("ROLE_CLIENT", message: "Vous n'avez pas les droits suffisant pour cet actions")]
     public function getProduct(Product $product): JsonResponse
     {
         $productWhitHateos = $this->getProductsWithHateoas->product($product);
