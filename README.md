@@ -70,6 +70,8 @@ Key functionalities of the API:
    openssl rsa -in ./config/jwt/private.pem -pubout -out ./config/jwt/public.pem
    ```
 
+4. These are basics key. You don't need passphrase. You can set environement variable "JWT_PASSPHRASE" to to blank in your .env or .env.local file.
+
 ## Documentation
 
 - /api/doc
